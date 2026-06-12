@@ -1,0 +1,15 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg" style="">
+  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Local Authority Building Icon</title>
+  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">A map pin with a crown on top, symbolizing local dominance and authority</desc>
+
+  
+
+  <!-- Map pin -->
+  <path d="&#10;    M340 180&#10;    C268 180 210 238 210 310&#10;    C210 400 340 510 340 510&#10;    C340 510 470 400 470 310&#10;    C470 238 412 180 340 180 Z&#10;  " style="fill:none;stroke:rgb(255, 255, 255);color:rgb(255, 255, 255);stroke-width:20px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Inner dot -->
+  <circle cx="340" cy="310" r="28" style="fill:none;stroke:rgb(255, 255, 255);color:rgb(255, 255, 255);stroke-width:20px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Crown sitting on top of pin -->
+  <polyline points="252,168 252,108 290,140 340,100 390,140 428,108 428,168" style="fill:none;stroke:rgb(255, 255, 255);color:rgb(255, 255, 255);stroke-width:20px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+</svg>
