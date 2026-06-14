@@ -221,13 +221,13 @@ export default function Home() {
               <div className="relative flex flex-col">
                 {/* Floating save badge */}
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                  <span className="bg-[#8B1A1A] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg shadow-red-900/40 whitespace-nowrap">
+                  <span className="bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg shadow-blue-600/30 whitespace-nowrap">
                     Save R1,750
                   </span>
                 </div>
-                <div className="bg-neutral-100 rounded-2xl p-10 flex flex-col gap-8 border-2 border-[#8B1A1A] shadow-lg shadow-red-900/10 pt-12 flex-1">
+                <div className="bg-neutral-100 rounded-2xl p-10 flex flex-col gap-8 border-2 border-blue-600 shadow-lg shadow-blue-200 pt-12 flex-1">
                   <div className="flex flex-col gap-2">
-                    <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#c0392b]">Best</p>
+                    <p className="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600">Best</p>
                     <p className="text-4xl font-black text-black">R11,000 <span className="text-lg font-semibold text-neutral-500">/ Quarter</span></p>
                   </div>
                   <div className="flex flex-col gap-2">
@@ -290,7 +290,7 @@ export default function Home() {
       </main>
 
       {/* ── Footer Hero ── */}
-      <footer className="bg-neutral-950 px-6">
+      <footer className="bg-white px-6 border-t border-neutral-200">
         {/* Hero content */}
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center pt-24 pb-20 gap-8">
           {/* Logo */}
@@ -299,11 +299,11 @@ export default function Home() {
             alt="HK Results"
             width={110}
             height={44}
-            className="object-contain invert"
+            className="object-contain"
           />
 
           {/* Headline */}
-          <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] text-white">
+          <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] text-black">
             Dominate your{" "}
             <span
               className="italic text-blue-600"
@@ -321,29 +321,29 @@ export default function Home() {
 
         {/* Services list */}
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center pb-12 gap-4">
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-500">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400">
             Services
           </p>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
-            {["Local SEO", "Web Design", "Automations", "Google Ads", "Meta Ads", "Consulting"].map((s) => (
-              <span key={s} className="text-sm text-neutral-300 font-medium">{s}</span>
+            {["Local SEO", "Web Design", "Google Ads", "Meta Ads", "Consulting"].map((s) => (
+              <span key={s} className="text-sm text-neutral-600 font-medium">{s}</span>
             ))}
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-neutral-800" />
+        <div className="border-t border-neutral-200" />
 
         {/* Footer bar */}
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center py-8 gap-2">
-          <p className="text-sm font-bold text-white tracking-wide">
+          <p className="text-sm font-bold text-black tracking-wide">
             © {new Date().getFullYear()} HK Results. All rights reserved.
           </p>
-          <p className="text-xs text-neutral-600">
+          <p className="text-xs text-neutral-400">
             Terms, conditions, and privacy information are available by email at{" "}
             <a
               href="mailto:hamilton@hkresults.co.za"
-              className="text-neutral-500 hover:text-neutral-300 transition-colors"
+              className="text-neutral-500 hover:text-neutral-700 transition-colors"
             >
               hamilton@hkresults.co.za
             </a>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const CRIMSON = "#2563EB";
+const BLUE = "#2563EB";
 
 const budgetOptions = [
   "R0 – R2,000 / month",
@@ -50,12 +50,12 @@ export default function LeadCaptureForm() {
   }
 
   const inputClass =
-    "w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-blue-600 transition-colors";
+    "w-full bg-white border border-neutral-300 rounded-lg px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-blue-600 transition-colors";
 
-  const labelClass = "block text-sm font-bold text-neutral-200 mb-1.5";
+  const labelClass = "block text-sm font-bold text-neutral-700 mb-1.5";
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-neutral-900 rounded-2xl p-8 md:p-10 border border-neutral-800 shadow-2xl">
+    <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl p-8 md:p-10 border border-neutral-200 shadow-lg">
 
       {/* ── Progress indicator ── */}
       <div className="flex items-center mb-10">
@@ -63,32 +63,32 @@ export default function LeadCaptureForm() {
         <div className="flex items-center gap-2.5">
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
-            style={{ background: step >= 1 ? CRIMSON : "#404040", color: "white" }}
+            style={{ background: step >= 1 ? BLUE : "#e5e7eb", color: step >= 1 ? "white" : "#6b7280" }}
           >
             {step > 1 ? "✓" : "1"}
           </div>
           <span
             className="text-sm font-bold whitespace-nowrap"
-            style={{ color: step >= 1 ? "white" : "#737373" }}
+            style={{ color: step >= 1 ? "#111827" : "#6b7280" }}
           >
             Contact Info
           </span>
         </div>
 
         {/* Connector */}
-        <div className="flex-1 mx-4 h-px" style={{ background: step === 2 ? CRIMSON : "#404040" }} />
+        <div className="flex-1 mx-4 h-px" style={{ background: step === 2 ? BLUE : "#e5e7eb" }} />
 
         {/* Step 2 */}
         <div className="flex items-center gap-2.5">
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
-            style={{ background: step === 2 ? CRIMSON : "#404040", color: "white" }}
+            style={{ background: step === 2 ? BLUE : "#e5e7eb", color: step === 2 ? "white" : "#6b7280" }}
           >
             2
           </div>
           <span
             className="text-sm font-bold whitespace-nowrap"
-            style={{ color: step === 2 ? "white" : "#737373" }}
+            style={{ color: step === 2 ? "#111827" : "#6b7280" }}
           >
             Business Details
           </span>
@@ -128,9 +128,9 @@ export default function LeadCaptureForm() {
           <button
             onClick={() => setStep(2)}
             className="mt-2 w-full py-4 rounded-xl text-sm font-bold tracking-wider text-white transition-colors"
-            style={{ background: CRIMSON }}
+            style={{ background: BLUE }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#1d4ed8")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = CRIMSON)}
+            onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)}
           >
             Continue to Step 2 →
           </button>
@@ -166,7 +166,7 @@ export default function LeadCaptureForm() {
               </select>
             </div>
           </div>
-          <p className="text-xs text-neutral-500 -mt-3 italic">Our programs start from R3,250/month.</p>
+          <p className="text-xs text-neutral-400 -mt-3 italic">Our programs start from R3,250/month.</p>
 
           <div>
             <label className={labelClass}>Customers per month</label>
@@ -186,8 +186,8 @@ export default function LeadCaptureForm() {
                   className="flex-1 py-2.5 rounded-full text-sm font-semibold border transition-all duration-200"
                   style={
                     timing === t
-                      ? { background: "#1a1a1a", color: "white", borderColor: "#1a1a1a" }
-                      : { background: "transparent", color: "#a3a3a3", borderColor: "#404040" }
+                      ? { background: BLUE, color: "white", borderColor: BLUE }
+                      : { background: "transparent", color: "#6b7280", borderColor: "#d1d5db" }
                   }
                 >
                   {t}
@@ -199,15 +199,15 @@ export default function LeadCaptureForm() {
           <div className="flex gap-4 mt-2">
             <button
               onClick={() => setStep(1)}
-              className="flex-1 py-4 rounded-xl text-sm font-bold tracking-wider border border-neutral-600 text-neutral-300 hover:border-neutral-400 hover:text-white transition-colors bg-transparent"
+              className="flex-1 py-4 rounded-xl text-sm font-bold tracking-wider border border-neutral-300 text-neutral-600 hover:border-neutral-400 hover:text-neutral-800 transition-colors bg-transparent"
             >
               ← Back
             </button>
             <button
               className="flex-1 py-4 rounded-xl text-sm font-bold tracking-wider text-white transition-colors"
-              style={{ background: CRIMSON }}
+              style={{ background: BLUE }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "#1d4ed8")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = CRIMSON)}
+              onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)}
             >
               Submit Analysis
             </button>
