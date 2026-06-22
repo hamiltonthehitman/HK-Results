@@ -8,9 +8,9 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "HK Results — Marketing That Delivers",
+  title: "Rank Top 3 on Google Maps",
   description:
-    "HK Results is a results-driven marketing agency helping brands grow through strategy, content, and digital execution.",
+    "HK Results helps local businesses rank in the top 3 on Google Maps within 90 days. Guaranteed visibility, more calls, more customers.",
 };
 
 export default function RootLayout({

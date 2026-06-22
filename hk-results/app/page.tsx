@@ -3,6 +3,8 @@ import BeforeAfter from "./BeforeAfter";
 import LeadCaptureForm from "./LeadCaptureForm";
 import FAQ from "./FAQ";
 import IconCards from "./IconCards";
+import LocationBadge from "./LocationBadge";
+import HeatmapLegend from "./HeatmapLegend";
 
 
 export default function Home() {
@@ -10,15 +12,15 @@ export default function Home() {
     <>
       {/* ── Navbar ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <Image
             src="/logo.png"
             alt="HK Results"
-            width={100}
-            height={40}
+            width={130}
+            height={52}
             className="object-contain invert"
           />
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide text-white">
+          <nav className="hidden md:flex items-center gap-8 text-base font-medium tracking-wide text-white">
             <a href="#the-process" className="hover:opacity-50 transition-opacity">
               The Process
             </a>
@@ -31,7 +33,7 @@ export default function Home() {
           </nav>
           <a
             href="#profile-analysis"
-            className="hidden md:inline-block text-sm font-semibold tracking-wider px-5 py-2.5 bg-white text-black hover:bg-neutral-200 transition-colors"
+            className="hidden md:inline-block text-base font-semibold tracking-wider px-5 py-3 bg-white text-black hover:bg-neutral-200 transition-colors"
           >
             Get Started
           </a>
@@ -40,11 +42,16 @@ export default function Home() {
 
       <main className="flex-1">
         {/* ── Hero ── */}
-        <section className="pt-32 pb-6 px-6">
-          <div className="max-w-6xl mx-auto text-center">
-            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-neutral-400 mb-6">
-              Marketing Agency
-            </p>
+        <section className="pt-36 pb-6 px-6">
+          <div className="max-w-6xl mx-auto">
+            {/* Meta stack: label top, location below, both centred */}
+            <div className="flex flex-col items-center gap-1.5 mb-6">
+              <p className="text-xs font-semibold tracking-[0.25em] uppercase text-neutral-400">
+                Marketing Agency
+              </p>
+              <LocationBadge />
+            </div>
+          <div className="text-center">
             <h1 className="text-5xl md:text-7xl font-black leading-[1.05] tracking-tight mb-8">
               <span
                 className="text-blue-600 italic"
@@ -103,6 +110,7 @@ export default function Home() {
                 <path d="M12 5v14M5 12l7 7 7-7" />
               </svg>
             </div>
+          </div>
           </div>
         </section>
 
@@ -297,8 +305,8 @@ export default function Home() {
           <Image
             src="/logo.png"
             alt="HK Results"
-            width={110}
-            height={44}
+            width={150}
+            height={60}
             className="object-contain"
           />
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { submitLeadForm } from "./actions";
 
 const BLUE = "#2563EB";
 
@@ -31,6 +32,7 @@ const timingOptions = ["Today", "A few weeks", "Just exploring"];
 export default function LeadCaptureForm() {
   const [step, setStep] = useState(1);
   const [timing, setTiming] = useState("Today");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const [fields, setFields] = useState({
     fullName: "",
@@ -49,17 +51,42 @@ export default function LeadCaptureForm() {
       setFields((prev) => ({ ...prev, [key]: e.target.value }));
   }
 
+  async function handleSubmit() {
+    setStatus("sending");
+    try {
+      await submitLeadForm({ ...fields, timing });
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   const inputClass =
     "w-full bg-white border border-neutral-300 rounded-lg px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-blue-600 transition-colors";
 
   const labelClass = "block text-sm font-bold text-neutral-700 mb-1.5";
+
+  if (status === "sent") {
+    return (
+      <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl p-10 border border-neutral-200 shadow-lg flex flex-col items-center text-center gap-4">
+        <div className="w-14 h-14 rounded-full bg-green-50 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-black text-black">We've received your request!</h3>
+        <p className="text-sm text-neutral-500 max-w-sm leading-relaxed">
+          Hamilton will review your details and get back to you shortly with a personalised analysis.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl p-8 md:p-10 border border-neutral-200 shadow-lg">
 
       {/* ── Progress indicator ── */}
       <div className="flex items-center mb-10">
-        {/* Step 1 */}
         <div className="flex items-center gap-2.5">
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
@@ -67,18 +94,13 @@ export default function LeadCaptureForm() {
           >
             {step > 1 ? "✓" : "1"}
           </div>
-          <span
-            className="text-sm font-bold whitespace-nowrap"
-            style={{ color: step >= 1 ? "#111827" : "#6b7280" }}
-          >
+          <span className="text-sm font-bold whitespace-nowrap" style={{ color: step >= 1 ? "#111827" : "#6b7280" }}>
             Contact Info
           </span>
         </div>
 
-        {/* Connector */}
         <div className="flex-1 mx-4 h-px" style={{ background: step === 2 ? BLUE : "#e5e7eb" }} />
 
-        {/* Step 2 */}
         <div className="flex items-center gap-2.5">
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
@@ -86,10 +108,7 @@ export default function LeadCaptureForm() {
           >
             2
           </div>
-          <span
-            className="text-sm font-bold whitespace-nowrap"
-            style={{ color: step === 2 ? "#111827" : "#6b7280" }}
-          >
+          <span className="text-sm font-bold whitespace-nowrap" style={{ color: step === 2 ? "#111827" : "#6b7280" }}>
             Business Details
           </span>
         </div>
@@ -196,20 +215,27 @@ export default function LeadCaptureForm() {
             </div>
           </div>
 
+          {status === "error" && (
+            <p className="text-sm text-red-500 text-center">Something went wrong. Please try again or WhatsApp us directly.</p>
+          )}
+
           <div className="flex gap-4 mt-2">
             <button
               onClick={() => setStep(1)}
-              className="flex-1 py-4 rounded-xl text-sm font-bold tracking-wider border border-neutral-300 text-neutral-600 hover:border-neutral-400 hover:text-neutral-800 transition-colors bg-transparent"
+              disabled={status === "sending"}
+              className="flex-1 py-4 rounded-xl text-sm font-bold tracking-wider border border-neutral-300 text-neutral-600 hover:border-neutral-400 hover:text-neutral-800 transition-colors bg-transparent disabled:opacity-50"
             >
               ← Back
             </button>
             <button
-              className="flex-1 py-4 rounded-xl text-sm font-bold tracking-wider text-white transition-colors"
+              onClick={handleSubmit}
+              disabled={status === "sending"}
+              className="flex-1 py-4 rounded-xl text-sm font-bold tracking-wider text-white transition-colors disabled:opacity-70"
               style={{ background: BLUE }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "#1d4ed8")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)}
+              onMouseEnter={(e) => { if (status !== "sending") e.currentTarget.style.background = "#1d4ed8"; }}
+              onMouseLeave={(e) => { if (status !== "sending") e.currentTarget.style.background = BLUE; }}
             >
-              Submit Analysis
+              {status === "sending" ? "Sending…" : "Submit Analysis"}
             </button>
           </div>
         </div>

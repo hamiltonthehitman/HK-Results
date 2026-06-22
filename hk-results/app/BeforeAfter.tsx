@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import HeatmapLegend from "./HeatmapLegend";
 
 const beforeMetrics = [
   { label: "Average Ranking", value: "86" },
@@ -11,7 +12,7 @@ const beforeMetrics = [
 ];
 
 const afterMetrics = [
-  { label: "Average Ranking", value: "2" },
+  { label: "Average Ranking", value: "1" },
   { label: "Marketshare", value: "82%" },
   { label: "Clicks per Month", value: "80" },
   { label: "Customers per Month", value: "15+" },
@@ -69,6 +70,9 @@ export default function BeforeAfter() {
           After
         </button>
       </div>
+
+      {/* Legend toggle */}
+      <HeatmapLegend />
 
       {/* Cards row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
