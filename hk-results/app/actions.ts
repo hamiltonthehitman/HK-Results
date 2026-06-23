@@ -16,6 +16,12 @@ export async function submitLeadForm(data: {
   customers: string;
   timing: string;
 }) {
+  await fetch("https://hook.us2.make.com/m1jgrx8yg7f5rrskuc038xrtafe2pgzf", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
   await resend.emails.send({
     from: "HK Results Website <onboarding@resend.dev>",
     to: "hamilton@hkresults.co.za",
