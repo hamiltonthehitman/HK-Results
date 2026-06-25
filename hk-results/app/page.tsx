@@ -5,11 +5,13 @@ import FAQ from "./FAQ";
 import IconCards from "./IconCards";
 import LocationBadge from "./LocationBadge";
 import HeatmapLegend from "./HeatmapLegend";
+import PopupForm from "./PopupForm";
 
 
 export default function Home() {
   return (
     <>
+      <PopupForm />
       {/* ── Navbar ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
