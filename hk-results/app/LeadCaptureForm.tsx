@@ -5,28 +5,6 @@ import { submitLeadForm } from "./actions";
 
 const BLUE = "#2563EB";
 
-const budgetOptions = [
-  "R0 – R2,000 / month",
-  "R2,000 – R5,000 / month",
-  "R5,000 – R10,000 / month",
-  "R10,000+ / month",
-];
-
-const jobValueOptions = [
-  "Under R1,000",
-  "R1,000 – R5,000",
-  "R5,000 – R15,000",
-  "R15,000 – R50,000",
-  "R50,000+",
-];
-
-const customersOptions = [
-  "0 – 5 per month",
-  "5 – 15 per month",
-  "15 – 30 per month",
-  "30+ per month",
-];
-
 const timingOptions = ["Today", "A few weeks", "Just exploring"];
 
 export default function LeadCaptureForm() {
@@ -41,9 +19,6 @@ export default function LeadCaptureForm() {
     website: "",
     companyName: "",
     businessDo: "",
-    budget: "",
-    jobValue: "",
-    customers: "",
   });
 
   function set(key: keyof typeof fields) {
@@ -56,7 +31,8 @@ export default function LeadCaptureForm() {
     try {
       await submitLeadForm({ ...fields, timing });
       setStatus("sent");
-    } catch {
+    } catch (error) {
+      console.error("Lead form submission failed:", error);
       setStatus("error");
     }
   }
@@ -167,32 +143,6 @@ export default function LeadCaptureForm() {
               value={fields.businessDo}
               onChange={set("businessDo")}
             />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div>
-              <label className={labelClass}>Current Marketing Budget</label>
-              <select className={inputClass} value={fields.budget} onChange={set("budget")}>
-                <option value="" disabled>Select budget range...</option>
-                {budgetOptions.map((o) => <option key={o} value={o}>{o}</option>)}
-              </select>
-            </div>
-            <div>
-              <label className={labelClass}>Average value of one job/sale</label>
-              <select className={inputClass} value={fields.jobValue} onChange={set("jobValue")}>
-                <option value="" disabled>Select average value...</option>
-                {jobValueOptions.map((o) => <option key={o} value={o}>{o}</option>)}
-              </select>
-            </div>
-          </div>
-          <p className="text-xs text-neutral-400 -mt-3 italic">Our programs start from R3,250/month.</p>
-
-          <div>
-            <label className={labelClass}>Customers per month</label>
-            <select className={inputClass} value={fields.customers} onChange={set("customers")}>
-              <option value="" disabled>Select customers per month...</option>
-              {customersOptions.map((o) => <option key={o} value={o}>{o}</option>)}
-            </select>
           </div>
 
           <div>
