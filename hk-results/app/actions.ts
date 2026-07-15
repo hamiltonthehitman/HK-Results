@@ -16,30 +16,23 @@ export async function submitLeadForm(data: {
 }) {
   console.log("Submitting lead form data:", JSON.stringify(data));
 
-  // 1. Send lead data to Make.com Webhook
-  try {
-    const response = await fetch("https://hook.us2.make.com/m1jgrx8yg7f5rrskuc038xrtafe2pgzf", {
+  // Make.com webhook and Resend email are independent delivery channels.
+  // Run them in parallel (not sequential) to stay well inside the host's
+  // function execution timeout, and only fail the submission if BOTH
+  // channels fail — a hiccup in one shouldn't lose the lead or show the
+  // visitor an error when the other channel got through fine.
+  const [webhookResult, emailResult] = await Promise.allSettled([
+    fetch("https://hook.us2.make.com/m1jgrx8yg7f5rrskuc038xrtafe2pgzf", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Make.com webhook returned status: ${response.status} ${response.statusText}`);
-    }
-    console.log("Successfully posted lead to Make.com webhook.");
-  } catch (error) {
-    console.error("CRITICAL: Make.com webhook integration failed:", error);
-    // Throw error so client-side knows the primary lead storage failed
-    throw error;
-  }
-
-  // 2. Send email notification via Resend
-  // NOTE: If using a free/sandbox Resend API key, you can only send to your own registered account email.
-  // Once the domain 'hkresults.co.za' is verified in Resend, you can change the 'to' recipient
-  // back to 'hamilton@hkresults.co.za' and the 'from' email to an address on your verified domain.
-  try {
-    const emailResult = await resend.emails.send({
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error(`Make.com webhook returned status: ${response.status} ${response.statusText}`);
+      }
+      return response;
+    }),
+    resend.emails.send({
       from: "HK Results Website <onboarding@resend.dev>",
       to: "hamiltonkhohlakala@gmail.com",
       subject: `New Lead: ${data.fullName} — ${data.companyName}`,
@@ -60,15 +53,25 @@ export async function submitLeadForm(data: {
           </table>
         </div>
       `,
-    });
+    }).then((result) => {
+      if (result.error) throw result.error;
+      return result;
+    }),
+  ]);
 
-    if (emailResult.error) {
-      console.error("Resend API error sending email notification:", emailResult.error);
-    } else {
-      console.log("Successfully sent Resend email notification. ID:", emailResult.data?.id);
-    }
-  } catch (error) {
-    // Non-critical: Do not throw, as we already saved the lead via Make.com webhook successfully
-    console.error("Non-critical: Resend email notification failed:", error);
+  if (webhookResult.status === "fulfilled") {
+    console.log("Successfully posted lead to Make.com webhook.");
+  } else {
+    console.error("Make.com webhook integration failed:", webhookResult.reason);
+  }
+
+  if (emailResult.status === "fulfilled") {
+    console.log("Successfully sent Resend email notification. ID:", emailResult.value.data?.id);
+  } else {
+    console.error("Resend email notification failed:", emailResult.reason);
+  }
+
+  if (webhookResult.status === "rejected" && emailResult.status === "rejected") {
+    throw new Error("Both lead delivery channels failed — webhook and email");
   }
 }

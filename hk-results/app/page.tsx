@@ -26,6 +26,9 @@ export default function Home() {
             <a href="#the-process" className="hover:opacity-50 transition-opacity">
               The Process
             </a>
+            <a href="#pricing" className="hover:opacity-50 transition-opacity">
+              Packages
+            </a>
             <a href="#before-after" className="hover:opacity-50 transition-opacity">
               Before &amp; After
             </a>

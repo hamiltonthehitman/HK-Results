@@ -25,8 +25,32 @@ export default function PopupForm() {
 
   useEffect(() => {
     if (sessionStorage.getItem(SESSION_KEY)) return;
-    const t = setTimeout(() => setVisible(true), 12000);
-    return () => clearTimeout(t);
+
+    // Once the visitor reaches the real form further down the page, never
+    // show the popup — it would otherwise interrupt someone already filling
+    // it in and make them re-enter everything a second time.
+    const t = setTimeout(() => {
+      if (!sessionStorage.getItem(SESSION_KEY)) setVisible(true);
+    }, 12000);
+
+    const target = document.getElementById("profile-analysis");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          sessionStorage.setItem(SESSION_KEY, "1");
+          clearTimeout(t);
+          setVisible(false);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (target) observer.observe(target);
+
+    return () => {
+      clearTimeout(t);
+      observer.disconnect();
+    };
   }, []);
 
   function close() {
