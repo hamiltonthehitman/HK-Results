@@ -21,14 +21,13 @@ const cards = [
     blendMode: "multiply" as const,
   },
   {
-    src: "/icons/local.svg",
+    src: "/icons/local-authority.png",
     label: "Become the Trusted Local Authority",
     description:
       "We establish your business as the dominant authority in your area by building the citations, content, and signals that Google actually uses to determine who deserves to rank at the top.",
-    defaultFilter:
-      "brightness(0) invert(29%) sepia(76%) saturate(1697%) hue-rotate(205deg) brightness(103%) contrast(97%)",
+    defaultFilter: "none",
     size: "w-44 h-44",
-    blendMode: "normal" as const,
+    blendMode: "multiply" as const,
   },
 ];
 

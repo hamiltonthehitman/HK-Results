@@ -98,7 +98,7 @@ export default function Home() {
             </div>
             <div id="the-process" className="mt-12 flex flex-col items-center gap-5 text-center scroll-mt-20">
               <h2 className="text-3xl md:text-4xl font-black tracking-tight text-black max-w-2xl leading-snug">
-                The <span className="text-blue-600">difference</span> between getting found and getting forgotten is.
+                The <span className="text-blue-600">difference</span> between being seen and being forgotten.
               </h2>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

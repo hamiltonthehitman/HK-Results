@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv \"HOV PICS/HOV LOGO NO TEXT.png\" \"public/images/logo-crest-source.png\")",
+      "Bash(mv \"HOV PICS/House_of_Visconti_Browser_favicon_clear_background\\(1\\).png\" \"public/images/logo-favicon-transparent.png\")",
+      "Bash(mv \"HOV PICS/Logo_1+to+1+ratio+for+SM+profiles_House+of+Visconti@2x.png\" \"public/images/logo-full-lockup.png\")",
+      "Bash(rm \"HOV PICS/HOV Enhanced balcony pic .png\")",
+      "Bash(rmdir \"HOV PICS\")"
+    ]
+  }
+}
