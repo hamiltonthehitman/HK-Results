@@ -25,10 +25,16 @@ export default function HeatmapLegend() {
 
   return (
     <div className="w-full max-w-3xl flex flex-col items-center gap-3 -mt-4">
+      <p className="text-sm font-semibold text-black">
+        <span className="inline-block w-3 h-3 rounded-full bg-green-500 align-middle mr-1.5" aria-hidden="true" />
+        Green = top 3.
+        <span className="inline-block w-3 h-3 rounded-full bg-red-500 align-middle ml-3 mr-1.5" aria-hidden="true" />
+        Red = invisible.
+      </p>
       <button
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="inline-flex items-center gap-1.5 text-xs font-medium text-black hover:text-neutral-600 transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-700 hover:text-black transition-colors"
       >
         <span className="w-4 h-4 rounded-full border border-current flex items-center justify-center text-[10px] font-bold leading-none flex-shrink-0">
           i
@@ -60,15 +66,15 @@ export default function HeatmapLegend() {
                 <span
                   className={`w-5 h-5 rounded-full ${tier.color} flex items-center justify-center text-white text-[9px] font-black leading-none flex-shrink-0`}
                 />
-                <span className="text-xs font-bold text-neutral-700 w-8">
+                <span className="text-sm font-bold text-neutral-700 w-10">
                   {tier.range}
                 </span>
               </div>
-              <p className="text-xs text-neutral-500 leading-relaxed">{tier.text}</p>
+              <p className="text-sm text-neutral-600 leading-relaxed">{tier.text}</p>
             </div>
           ))}
 
-          <p className="text-[10px] text-neutral-400 border-t border-neutral-100 pt-3 mt-1 leading-relaxed">
+          <p className="text-xs text-neutral-500 border-t border-neutral-100 pt-3 mt-1 leading-relaxed">
             Rankings are captured across a grid of locations around your business address.
           </p>
         </div>

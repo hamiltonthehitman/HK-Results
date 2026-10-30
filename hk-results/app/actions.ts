@@ -8,6 +8,7 @@ export async function submitLeadForm(data: {
   companyName: string;
   businessDo: string;
   timing: string;
+  reinvest?: string;
 }) {
   console.log("Submitting lead form data:", JSON.stringify(data));
 

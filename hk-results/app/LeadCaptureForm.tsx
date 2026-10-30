@@ -6,10 +6,12 @@ import { submitLeadForm } from "./actions";
 const BLUE = "#2563EB";
 
 const timingOptions = ["Today", "A few weeks", "Just exploring"];
+const reinvestOptions = ["Yes", "Not right now"];
 
 export default function LeadCaptureForm() {
   const [step, setStep] = useState(1);
   const [timing, setTiming] = useState("Today");
+  const [reinvest, setReinvest] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const [fields, setFields] = useState({
@@ -29,7 +31,7 @@ export default function LeadCaptureForm() {
   async function handleSubmit() {
     setStatus("sending");
     try {
-      await submitLeadForm({ ...fields, timing });
+      await submitLeadForm({ ...fields, timing, reinvest });
       setStatus("sent");
     } catch (error) {
       console.error("Lead form submission failed:", error);
@@ -50,7 +52,7 @@ export default function LeadCaptureForm() {
             <path d="M20 6L9 17l-5-5" />
           </svg>
         </div>
-        <h3 className="text-xl font-black text-black">We've received your request!</h3>
+        <h3 className="text-xl font-black text-black">We&apos;ve received your request!</h3>
         <p className="text-sm text-neutral-500 max-w-sm leading-relaxed">
           Hamilton will review your details and get back to you shortly with a personalised analysis.
         </p>
@@ -59,32 +61,32 @@ export default function LeadCaptureForm() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl p-8 md:p-10 border border-neutral-200 shadow-lg">
+    <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl p-5 sm:p-8 md:p-10 border border-neutral-200 shadow-lg">
 
       {/* ── Progress indicator ── */}
       <div className="flex items-center mb-10">
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 sm:gap-2.5">
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
             style={{ background: step >= 1 ? BLUE : "#e5e7eb", color: step >= 1 ? "white" : "#6b7280" }}
           >
             {step > 1 ? "✓" : "1"}
           </div>
-          <span className="text-sm font-bold whitespace-nowrap" style={{ color: step >= 1 ? "#111827" : "#6b7280" }}>
+          <span className="text-xs sm:text-sm font-bold whitespace-nowrap" style={{ color: step >= 1 ? "#111827" : "#6b7280" }}>
             Contact Info
           </span>
         </div>
 
-        <div className="flex-1 mx-4 h-px" style={{ background: step === 2 ? BLUE : "#e5e7eb" }} />
+        <div className="flex-1 mx-2 sm:mx-4 h-px" style={{ background: step === 2 ? BLUE : "#e5e7eb" }} />
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 sm:gap-2.5">
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
             style={{ background: step === 2 ? BLUE : "#e5e7eb", color: step === 2 ? "white" : "#6b7280" }}
           >
             2
           </div>
-          <span className="text-sm font-bold whitespace-nowrap" style={{ color: step === 2 ? "#111827" : "#6b7280" }}>
+          <span className="text-xs sm:text-sm font-bold whitespace-nowrap" style={{ color: step === 2 ? "#111827" : "#6b7280" }}>
             Business Details
           </span>
         </div>
@@ -95,29 +97,29 @@ export default function LeadCaptureForm() {
         <div className="flex flex-col gap-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className={labelClass}>Full Name <span className="text-blue-600">*</span></label>
-              <input className={inputClass} placeholder="John Smith" value={fields.fullName} onChange={set("fullName")} />
+              <label htmlFor="lc-fullName" className={labelClass}>Full Name <span className="text-blue-600">*</span></label>
+              <input id="lc-fullName" autoComplete="name" className={inputClass} placeholder="John Smith" value={fields.fullName} onChange={set("fullName")} />
             </div>
             <div>
-              <label className={labelClass}>Email <span className="text-blue-600">*</span></label>
-              <input className={inputClass} type="email" placeholder="john@company.com" value={fields.email} onChange={set("email")} />
+              <label htmlFor="lc-email" className={labelClass}>Email <span className="text-blue-600">*</span></label>
+              <input id="lc-email" autoComplete="email" className={inputClass} type="email" placeholder="john@company.com" value={fields.email} onChange={set("email")} />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className={labelClass}>Phone Number <span className="text-blue-600">*</span></label>
-              <input className={inputClass} type="tel" placeholder="+27 00 000 0000" value={fields.phone} onChange={set("phone")} />
+              <label htmlFor="lc-phone" className={labelClass}>Phone Number <span className="text-blue-600">*</span></label>
+              <input id="lc-phone" autoComplete="tel" className={inputClass} type="tel" placeholder="+27 00 000 0000" value={fields.phone} onChange={set("phone")} />
             </div>
             <div>
-              <label className={labelClass}>Website</label>
-              <input className={inputClass} placeholder="www.yoursite.co.za" value={fields.website} onChange={set("website")} />
+              <label htmlFor="lc-website" className={labelClass}>Website</label>
+              <input id="lc-website" autoComplete="url" className={inputClass} placeholder="www.yoursite.co.za" value={fields.website} onChange={set("website")} />
             </div>
           </div>
 
           <div>
-            <label className={labelClass}>Company Name <span className="text-blue-600">*</span></label>
-            <input className={inputClass} placeholder="Your Company Ltd." value={fields.companyName} onChange={set("companyName")} />
+            <label htmlFor="lc-company" className={labelClass}>Company Name <span className="text-blue-600">*</span></label>
+            <input id="lc-company" autoComplete="organization" className={inputClass} placeholder="Your Company Ltd." value={fields.companyName} onChange={set("companyName")} />
           </div>
 
           <button
@@ -129,6 +131,7 @@ export default function LeadCaptureForm() {
           >
             Continue to Step 2 →
           </button>
+          <p className="text-sm text-neutral-600 text-center">No obligation. No spam. You&apos;ll hear from Hamilton personally.</p>
         </div>
       )}
 
@@ -136,8 +139,9 @@ export default function LeadCaptureForm() {
       {step === 2 && (
         <div className="flex flex-col gap-6">
           <div>
-            <label className={labelClass}>What does your business do? <span className="text-blue-600">*</span></label>
+            <label htmlFor="lc-businessDo" className={labelClass}>What does your business do? <span className="text-blue-600">*</span></label>
             <input
+              id="lc-businessDo"
               className={inputClass}
               placeholder="e.g. Plumbing in Cape Town"
               value={fields.businessDo}
@@ -155,6 +159,30 @@ export default function LeadCaptureForm() {
                   className="flex-1 py-2.5 rounded-full text-sm font-semibold border transition-all duration-200"
                   style={
                     timing === t
+                      ? { background: BLUE, color: "white", borderColor: BLUE }
+                      : { background: "transparent", color: "#6b7280", borderColor: "#d1d5db" }
+                  }
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label id="lc-reinvest-label" className={labelClass}>
+              Are you able to reinvest at least R3,000/month into growing your business?
+            </label>
+            <div className="flex gap-3 mt-1" role="group" aria-labelledby="lc-reinvest-label">
+              {reinvestOptions.map((t) => (
+                <button
+                  key={t}
+                  type="button"
+                  aria-pressed={reinvest === t}
+                  onClick={() => setReinvest(t)}
+                  className="flex-1 py-2.5 rounded-full text-sm font-semibold border transition-all duration-200"
+                  style={
+                    reinvest === t
                       ? { background: BLUE, color: "white", borderColor: BLUE }
                       : { background: "transparent", color: "#6b7280", borderColor: "#d1d5db" }
                   }
@@ -185,9 +213,10 @@ export default function LeadCaptureForm() {
               onMouseEnter={(e) => { if (status !== "sending") e.currentTarget.style.background = "#1d4ed8"; }}
               onMouseLeave={(e) => { if (status !== "sending") e.currentTarget.style.background = BLUE; }}
             >
-              {status === "sending" ? "Sending…" : "Submit Analysis"}
+              {status === "sending" ? "Sending…" : "Submit"}
             </button>
           </div>
+          <p className="text-sm text-neutral-600 text-center">No obligation. No spam. You&apos;ll hear from Hamilton personally.</p>
         </div>
       )}
     </div>

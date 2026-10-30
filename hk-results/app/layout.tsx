@@ -8,10 +8,37 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://hkresults.co.za";
+
 export const metadata: Metadata = {
-  title: "Rank Top 3 on Google Maps",
+  metadataBase: new URL(siteUrl),
+  title: "Top 3 on Google Maps for South African Service Businesses | HK Results",
   description:
-    "HK Results helps local businesses rank in the top 3 on Google Maps within 90 days. Guaranteed visibility, more calls, more customers.",
+    "We put South African service businesses into Google's top 3 map spots in 90 days, or we keep working free until you get there. Get your free ranking map.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Top 3 on Google Maps in 90 days, or we work free until you are",
+    description:
+      "We put South African service businesses into Google's top 3 map spots and prove it on a street by street ranking map.",
+    url: siteUrl,
+    siteName: "HK Results",
+    locale: "en_ZA",
+    type: "website",
+  },
+};
+
+// Only details the owner has approved. Address and phone are left out on purpose.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "HK Results",
+  url: siteUrl,
+  logo: `${siteUrl}/logo.png`,
+  description:
+    "Local SEO and Google Maps ranking for service businesses across South Africa, with a top 3 in 90 days guarantee.",
+  email: "hamilton@hkresults.co.za",
+  areaServed: { "@type": "Country", name: "South Africa" },
+  knowsAbout: ["Local SEO", "Google Business Profile", "Google Maps ranking"],
 };
 
 export default function RootLayout({
@@ -22,6 +49,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-white text-black">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         {children}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
