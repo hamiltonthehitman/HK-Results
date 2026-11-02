@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { submitLeadForm } from "./actions";
+import { trackLead } from "./trackLead";
 
 const BLUE = "#2563EB";
 const SESSION_KEY = "hkr_popup_seen";
@@ -68,6 +69,7 @@ export default function PopupForm() {
     try {
       await submitLeadForm({ ...fields, timing });
       setStatus("sent");
+      trackLead();
       sessionStorage.setItem(SESSION_KEY, "1");
     } catch (error) {
       console.error("Lead form submission failed:", error);

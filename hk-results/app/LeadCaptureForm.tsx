@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { submitLeadForm } from "./actions";
+import { trackLead } from "./trackLead";
 
 const BLUE = "#2563EB";
 
@@ -33,6 +34,7 @@ export default function LeadCaptureForm() {
     try {
       await submitLeadForm({ ...fields, timing, reinvest });
       setStatus("sent");
+      trackLead();
     } catch (error) {
       console.error("Lead form submission failed:", error);
       setStatus("error");

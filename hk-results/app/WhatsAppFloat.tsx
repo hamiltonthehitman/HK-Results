@@ -1,3 +1,6 @@
+"use client";
+
+import { trackLead } from "./trackLead";
 const NUMBER = "27627963028";
 const MESSAGE = "Hi Hamilton, I'd like my free ranking map.";
 
@@ -7,6 +10,7 @@ export default function WhatsAppFloat() {
       href={`https://wa.me/${NUMBER}?text=${encodeURIComponent(MESSAGE)}`}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={trackLead}
       aria-label="Chat with Hamilton on WhatsApp"
       className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-green-600 text-white shadow-lg shadow-black/25 transition-transform hover:scale-105 md:bottom-8 md:right-8"
     >
