@@ -31,7 +31,7 @@ export default function PopupForm() {
     // it in and make them re-enter everything a second time.
     const t = setTimeout(() => {
       if (!sessionStorage.getItem(SESSION_KEY)) setVisible(true);
-    }, 12000);
+    }, 3000);
 
     const target = document.getElementById("profile-analysis");
     const observer = new IntersectionObserver(
