@@ -15,7 +15,16 @@ export async function submitLeadForm(data: {
   const response = await fetch("https://hook.us2.make.com/m1jgrx8yg7f5rrskuc038xrtafe2pgzf", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      full_name: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      website: data.website,
+      company_name: data.companyName,
+      business_description: data.businessDo,
+      start_timeline: data.timing,
+      can_reinvest: data.reinvest ?? "",
+    }),
   });
 
   if (!response.ok) {
