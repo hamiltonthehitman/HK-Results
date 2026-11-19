@@ -33,3 +33,28 @@ export async function submitLeadForm(data: {
 
   console.log("Successfully posted lead to Make.com webhook.");
 }
+
+export async function submitDetailerLead(data: {
+  fullName: string;
+  phone: string;
+  email: string;
+  isDetailer: string;
+  canReinvest: string;
+}) {
+  const response = await fetch("https://hook.us2.make.com/m1jgrx8yg7f5rrskuc038xrtafe2pgzf", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      lead_source: "car-detailers",
+      full_name: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      is_car_detailer: data.isDetailer,
+      can_reinvest: data.canReinvest,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Make.com webhook returned status: ${response.status} ${response.statusText}`);
+  }
+}
