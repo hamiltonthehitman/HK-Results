@@ -68,7 +68,7 @@ export default function DetailerQuiz() {
       <div id="quiz" className={`${cardClass} text-center scroll-mt-28`}>
         <h2 className="text-xl font-black text-black mb-3">Thank you for your time.</h2>
         <p className="text-sm text-neutral-500 max-w-sm mx-auto leading-relaxed">
-          Right now we only work with car detailers who can reinvest R1,000 a week into their business.
+          Right now we only work with car detailers who can reinvest R1,000 into getting new bookings.
           You are welcome to come back whenever that changes.
         </p>
       </div>

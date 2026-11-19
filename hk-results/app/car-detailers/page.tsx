@@ -42,7 +42,7 @@ export default function CarDetailersPage() {
           <p className="text-[11px] sm:text-sm font-semibold tracking-[0.15em] sm:tracking-[0.25em] uppercase text-neutral-900 mb-5 text-balance">
             For car detailers · Free 5-day trial
           </p>
-          <h1 className="text-[clamp(1.9rem,6.5vw,3.25rem)] font-bold leading-[1.05] tracking-tight mb-6">
+          <h1 className="text-[clamp(1.9rem,6.5vw,3.25rem)] font-bold leading-[1.05] tracking-tight">
             <span className="block">5 jobs in 5 days,</span>
             <span className="block text-blue-600 italic">
               <span className="relative inline-block pb-2 md:pb-3">
@@ -59,10 +59,6 @@ export default function CarDetailersPage() {
               </span>
             </span>
           </h1>
-          <p className="text-[15px] sm:text-[17px] md:text-xl font-normal text-neutral-600 leading-[1.75] max-w-[40rem] mx-auto text-balance">
-            We run your Meta ads free for 5 days. You only pay the ad spend. Not happy? We part ways, no strings
-            attached.
-          </p>
         </div>
 
         <DetailerQuiz />
